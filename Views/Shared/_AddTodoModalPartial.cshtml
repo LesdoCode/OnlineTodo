@@ -1,0 +1,40 @@
+﻿@model OnlineTodo.ViewModels.TodoViewModel
+<button type="button" class="btn btn-primary round-button rounded-circle my-5" data-bs-toggle="modal" data-bs-target="#openAddTodoForm">
+    <i class="fs-2 bi bi-plus"></i>
+</button>
+
+<div class="modal fade" id="openAddTodoForm" tabindex="-1" aria-labelledby="openAddTodoFormLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @using ( Html.BeginForm( $"AddTodo/{ViewBag.ListId}", "TodoList", FormMethod.Post, new { id = "newTodoForm" } ) )
+            {
+                Html.AntiForgeryToken();
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="openAddTodoFormLabel">Add todo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="mb-3">
+                        @Html.DisplayNameFor( t => t.Title )
+                        @Html.TextBoxFor( t => t.Title, new { @class = "form-control max-width" } )
+                        @Html.ValidationMessageFor(t => t.Title, null, new { @class="text-danger" })
+                    </div>
+
+                    <div class="mb-3">
+                        @Html.DisplayNameFor( t => t.Content )
+                        @Html.TextAreaFor( t => t.Content, new { @class = "form-control max-width" } )
+                        @Html.ValidationMessageFor(t => t.Content)
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <input type="submit" value="Add" class="btn btn-primary" />
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

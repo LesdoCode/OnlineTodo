@@ -1,0 +1,48 @@
+﻿@model OnlineTodo.ViewModels.TodoListViewModel
+@{
+    ViewBag.Title = "ViewList";
+    ViewBag.ListId = Model.Id;
+}
+
+<h2 class="display-5 text-center">@Model.Name</h2>
+<hr />
+
+@if ( Model.Todos.Count < 1 )
+{
+    <p class="lead text-center fs-4">
+        @Model.Name is empty. Hit the button to add
+    </p>
+
+
+}
+<div class="todo-list container">
+    @for ( int i = 0; i < Model.Todos.Count; i++ )
+    {
+        var todo = Model.Todos[i];
+        int currentItemNumber = i + 1;
+
+        <div class="todo-list-item list-item d-flex justify-content-between my-3 rounded-3 p-4 bg-light shadow-sm">
+            <span>
+                @currentItemNumber
+            </span>
+            <span class="lead">
+                @todo.Title
+            </span>
+            <span class="d-flex gap-lg-5 gap-4 justify-content-between" style="font-size: 1.3em;">
+                <i class="bi bi-check-all text-success"></i>
+                <i class="bi bi-trash text-danger"></i>
+            </span>
+        </div>
+    }
+    @Html.Partial( "_AddTodoModalPartial", new OnlineTodo.ViewModels.TodoViewModel() )
+
+</div>
+
+@section scripts
+{
+    <script>
+        const form = $("newTodoForm");
+        console.log(form);
+    </script>
+}
+

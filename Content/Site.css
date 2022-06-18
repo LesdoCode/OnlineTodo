@@ -1,0 +1,91 @@
+﻿html, body {
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    height: 100%;
+    width: 100%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(17em, 1fr));
+    grid-auto-rows: 15em;
+    grid-gap: 2vw;
+}
+
+@media screen and (max-width: 300px) {
+    .grid {
+        grid-auto-columns: 100%;
+    }
+}
+
+.card {
+    box-sizing: border-box !important;
+    height: 100%;
+    width: 100%;
+    transition: 0.1s ease-out;
+    padding-bottom: 1vw;
+}
+.card:hover {
+    transform: scale(1.01);
+    border: 2px solid;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.round-button {
+    width: 7em;
+    height: 7em;
+    margin: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button-hover {
+    transition: 0.1s ease-out;
+}
+.button-hover:hover {
+    transform: scale(1.3);
+}
+
+.input-validation-error,
+.input-validation-error:hover,
+.input-validation-error:focus {
+    border: 2px solid red;
+}
+
+.todo-list-item {
+    transition: 0.08s ease-out;
+}
+.todo-list-item:hover {
+    transform: scale(1.01);
+    box-shadow: 0 4px 8px 10px rgba(0,0,0,1);
+}
+
+.max-width {
+    min-width: 100%;
+}

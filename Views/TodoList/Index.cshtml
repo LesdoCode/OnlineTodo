@@ -1,0 +1,59 @@
+﻿@model IEnumerable <OnlineTodo.ViewModels.TodoListViewModel>
+@{
+      ViewBag.Title = "Index";
+}
+
+<h1 class="display-5 text-center">
+    My lists
+</h1>
+
+<div class="grid mt-5">
+
+    <a href="/TodoList/Create" class="btn btn-primary rounded-circle round-button">
+        <i class="bi bi-plus-lg" style="font-size: 2em;"></i>
+    </a>
+
+    @foreach(var todoList in Model)
+    {
+    
+        <div class="card border-primary mb-3">
+            <div class="card-header d-flex justify-content-between">
+                <span class="lead">
+                    @todoList.Todos.Count Items
+                </span>
+                <span>
+                    @todoList.Todos.Count Items Complete
+                </span>
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">@todoList.Name</h4>
+                <p class="card-text">
+                    @todoList.ShortDescription
+                </p>
+            </div>
+            <div class="d-flex justify-content-evenly w-100">
+                <a href="/TodoList/ViewList/@todoList.Id" class="btn rounded-circle button-hover">
+                    <i class="bi bi-eye text-success" style="font-size: 1.3em"></i>
+                </a>
+                <a href="/TodoList/Edit/@todoList.Id" class="btn rounded-circle button-hover">
+                    <i class="bi bi-pencil text-primary" style="font-size: 1.3em"></i>
+                </a>
+
+                @using ( Html.BeginForm( $"DeleteTodoList/{todoList.Id}", "TodoList", FormMethod.Post ) )
+                {
+                    Html.AntiForgeryToken();
+
+                    <button type="submit" class="btn rounded-circle button-hover">
+                        <i class="bi bi-trash text-danger" style="font-size: 1.3em"></i>
+                    </button>
+                }
+            </div>
+        </div>
+
+        
+    }
+
+
+</div>
+
+
